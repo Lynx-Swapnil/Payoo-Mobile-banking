@@ -1,38 +1,38 @@
 document.getElementById("cashout-btn").addEventListener("click", function() {
-
-    const cashoutNumberInput = document.getElementById("cashout-number");
-    const cashoutNumber = cashoutNumberInput.value;
-    console.log(cashoutNumber);
-
-    if (cashoutNumber.length !== 11) {
+ const cashoutNumber = getValueFromInput("cashout-number");
+        if (cashoutNumber.length !== 11) {  
         alert("Invalid Agent number!");
         return;
     }
+ const cashoutAmount = getValueFromInput("cashout-amount");
 
-    const cashoutAmountInput = document.getElementById("cashout-amount");
-    const cashoutAmount = cashoutAmountInput.value;
-    console.log(cashoutAmount);
+    const currentBalance = document.getElementById("balance");
 
-    const balanceElement = document.getElementById("balance");
-    const balance = balanceElement.innerText;
-    console.log(balance);
-    const newBalance = Number(balance) - Number(cashoutAmount);
-    
+    const newBalance = Number(currentBalance.innerText) - Number(cashoutAmount);
+
     if (newBalance < 0) {
         alert("Invalid amount!");
         return;
     }
-    console.log(newBalance);
 
-    const cashoutPinInput = document.getElementById("cashout-pin");
-    const cashoutPin = cashoutPinInput.value;
-    console.log(cashoutPin);
-    if (cashoutPin === "1234") {
+    const pin = getValueFromInput("cashout-pin");
+    if (pin === "1234") {
         alert("Cashout successful!");
-        balanceElement.innerText = newBalance;
+        setBalance(newBalance);
+
+         const history = document.getElementById("history-container")
+    const newHistory = document.createElement("div");
+    newHistory.innerHTML = `
+     <div class="transaction-card p-5 bg-base-100">
+            Cashout ${cashoutAmount} successfully! to ${cashoutNumber} .  
+            at ${new Date()} 
+        </div>
+    `;
+    history.append(newHistory);
     }
     else {
         alert("Invalid pin!");
         return;
     }
+
 })
