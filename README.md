@@ -52,28 +52,39 @@ A fully functional full-stack mobile financial service (MFS) web application.
 
 ---
 
-## 💻 Local Development
+## 💻 Run Locally
 
-Want to run this locally?
+Want to run this on your computer?
 
-### Quick Start:
+### 🚀 Super Easy Method (Windows):
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Lynx-Swapnil/Payoo-Mobile-banking.git
+   cd Payoo-Mobile-banking
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Set up environment:**
+   ```bash
+   copy .env.example .env
+   ```
+   Then edit `.env` file and change `JWT_SECRET` to any random secure string.
+
+4. **Just double-click `start.bat`** 🎯
+   - Both servers start automatically
+   - Browser opens at `http://localhost:8000`
+   - Done! No commands needed!
+
+### 📋 Alternative Method (Any OS):
+
 ```bash
-# Clone the repository
-git clone https://github.com/Lynx-Swapnil/Payoo-Mobile-banking.git
-cd Payoo-Mobile-banking
-
-# Install backend dependencies
-cd server
-npm install
-
-# Set up environment variables
-copy .env.example .env
-# Edit .env and add your JWT_SECRET
-
-# Start both servers (from project root)
-# Option 1: Double-click start.bat (Windows)
-# Option 2: Run npm start
-cd ..
+# From project root
 npm install
 npm start
 ```
