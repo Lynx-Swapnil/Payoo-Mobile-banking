@@ -14,9 +14,9 @@ app.use(cors({
     origin: [
         'http://localhost:8000',           // Local development
         'http://127.0.0.1:8000',           // Local development
-        // Add your production frontend URL here:
-        // 'https://your-frontend.onrender.com',
-        // 'https://your-frontend.vercel.app',
+        // Add your production frontend URL here when you deploy frontend:
+        // 'https://payoo-mobile-banking-frontend.onrender.com',
+        // or any Render/Vercel/Netlify URL you get
     ],
     credentials: true
 }));

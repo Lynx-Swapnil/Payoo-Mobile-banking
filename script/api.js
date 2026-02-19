@@ -2,7 +2,7 @@
 // Automatically detect if running locally or on production
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000/api'  // Local development
-    : 'https://payoo-backend.onrender.com/api';  // Production (change this to your backend URL)
+    : 'https://payoo-mobile-banking.onrender.com/api';  // Production - Your actual backend URL
 
 // Get token from localStorage
 function getToken() {
