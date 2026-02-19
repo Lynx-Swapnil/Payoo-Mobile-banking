@@ -42,12 +42,22 @@
           <label class="label text-neutral font-bold">4 Digit Pin</label>
           <input id="input-pin" maxlength="4" type="password" class="input rounded-full bg-base-200" placeholder="Enter 4 digit pin" />
           <div></div>
-          <button id="login-btn" class="btn btn-primary mt-4 rounded-full">Login</button>
+          <button id="login-btn" class="btn btn-primary mt-4 rounded-full">
+            <span id="login-text">Login</span>
+            <span id="login-loading" class="loading loading-spinner loading-sm hidden"></span>
+          </button>
+
+          <div class="text-center mt-4">
+            <p class="text-sm text-neutral/70">Don't have an account? 
+              <a href="register.html" class="text-primary font-semibold">Register here</a>
+            </p>
+          </div>
         </fieldset>
       </div>
     </div>
    </div>
 
+   <script src="script/api.js"></script>
    <script src="script/login.js"></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "name": "payoo-fullstack",
+  "version": "1.0.0",
+  "description": "Payoo MFS Full-Stack Application",
+  "scripts": {
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd server && npm start",
+    "frontend": "python -m http.server 8000",
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend\"",
+    "backend:dev": "cd server && npm run dev",
+    "install-all": "cd server && npm install"
+  },
+  "keywords": ["mfs", "payment", "fullstack"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

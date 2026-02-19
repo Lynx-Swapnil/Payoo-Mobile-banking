@@ -1,38 +1,37 @@
-document.getElementById("cashout-btn").addEventListener("click", function() {
- const cashoutNumber = getValueFromInput("cashout-number");
-        if (cashoutNumber.length !== 11) {  
-        alert("Invalid Agent number!");
+document.getElementById("cashout-btn").addEventListener("click", async function() {
+    const cashoutNumber = getValueFromInput("cashout-number");
+    if (cashoutNumber.length !== 11 || isNaN(cashoutNumber)) {
+        alert("Invalid Agent number! Please enter 11 digits.");
         return;
     }
- const cashoutAmount = getValueFromInput("cashout-amount");
-
-    const currentBalance = document.getElementById("balance");
-
-    const newBalance = Number(currentBalance.innerText) - Number(cashoutAmount);
-
-    if (newBalance < 0) {
-        alert("Invalid amount!");
+    
+    const cashoutAmount = getValueFromInput("cashout-amount");
+    if (isNaN(cashoutAmount) || Number(cashoutAmount) <= 0) {
+        alert(" Please enter a valid amount!");
         return;
     }
-
+    
     const pin = getValueFromInput("cashout-pin");
-    if (pin === "1234") {
-        alert("Cashout successful!");
-        setBalance(newBalance);
-
-         const history = document.getElementById("history-container")
-    const newHistory = document.createElement("div");
-    newHistory.innerHTML = `
-     <div class="transaction-card p-5 bg-base-100">
-            Cashout ${cashoutAmount} successfully! to ${cashoutNumber} .  
-            at ${new Date()} 
-        </div>
-    `;
-    history.append(newHistory);
-    }
-    else {
-        alert("Invalid pin!");
+    if (!pin || pin.length !== 4) {
+        alert("Please enter a valid 4-digit PIN!");
         return;
     }
-
+    
+    try {
+        const result = await TransactionAPI.cashout(cashoutNumber, cashoutAmount, pin);
+        
+        if (result.success) {
+            updateBalance(result.balance);
+            const charge = result.charge;
+            const total = parseFloat(cashoutAmount) + charge;
+            alert(`Cashout successful!\nAmount: $${cashoutAmount}\nCharge (1.5%): $${charge.toFixed(2)}\nTotal: $${total.toFixed(2)}`);
+            clearForm(['cashout-number', 'cashout-amount', 'cashout-pin']);
+            await loadTransactionHistory();
+            showHome();
+        } else {
+            alert(result.message || 'Transaction failed!');
+        }
+    } catch (error) {
+        alert(error.message || 'Transaction failed! Please try again.');
+    }
 })
