@@ -8,15 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-// CORS Configuration - Update this for production!
-// Add your frontend URL to the origin array when deploying
+// CORS Configuration - Allow frontend to access backend API
 app.use(cors({
     origin: [
-        'http://localhost:8000',           // Local development
-        'http://127.0.0.1:8000',           // Local development
-        // Add your production frontend URL here when you deploy frontend:
-        // 'https://payoo-mobile-banking-frontend.onrender.com',
-        // or any Render/Vercel/Netlify URL you get
+        'http://localhost:8000',                              // Local development
+        'http://127.0.0.1:8000',                              // Local development
+        'https://payoo-mobile-banking-1.onrender.com'         // Production frontend
     ],
     credentials: true
 }));
